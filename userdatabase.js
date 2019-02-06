@@ -24,8 +24,7 @@ let userSchema = new mongoose.Schema({
       type: String,
       required: true,
     }
-   }    
-})
+   })
 
 module.exports = new Database()  
 module.exports = mongoose.model('User', userSchema)
