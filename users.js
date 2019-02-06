@@ -1,4 +1,4 @@
-let UserModel = require('./usersdatabase')
+let UserModel = require('./userdatabase')
 
 let msg = new UserModel ({
     name: 'Roman Gifford'
