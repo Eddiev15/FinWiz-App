@@ -8,7 +8,8 @@ module.exports = function (app) {
                 name:"",
                 level:0,
                 description:"",
-                icon:""
+                icon:"",
+                restriction: []
             },
             pricing:{
                 buy:{
@@ -24,19 +25,20 @@ module.exports = function (app) {
 
         axios.get("https://api.guildwars2.com/v2/items/"+req.params.id)
         .then(function(response){
-            console.log(response.data);
+            // console.log(response.data);
             item = response.data;
             itemData.id = item.id;
             itemData.data.name = item.name;
             itemData.data.description = item.description;
             itemData.data.icon = item.icon;
             itemData.data.level = item.level;
+            itemData.data.restriction = item.flags;
         }).catch(function(error){
             console.log("item data error:\n"+error);
         })
         .then(axios.get("https://api.guildwars2.com/v2/commerce/prices/"+req.params.id)
         .then(function(response){
-            console.log(response.data);
+            // console.log(response.data);
             price = response.data;
             itemData.pricing.buy.quantity = price.buys.quantity;
             itemData.pricing.buy.price = price.buys.unit_price;
